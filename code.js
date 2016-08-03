@@ -1,11 +1,13 @@
 $(function(){ // on dom ready
 
 
+var urlOfJson="https://raw.githubusercontent.com/GilGald/ToscaVisualizerClient/master/jsonTry.json"
+
  function loadJSON(callback) {   
 
     var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'https://gist.githubusercontent.com/mbostock/4063269/raw/e87e5bbd6ba610d3f693dd42c00c7fc583fda5aa/flare.json', true); // Replace 'my_data' with the path to your file
+    xobj.open('GET', urlOfJson, true); // Replace 'my_data' with the path to your file
     xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -16,18 +18,8 @@ $(function(){ // on dom ready
  }
  
  
- 
- function init() {
- loadJSON(function(response) {
-  // Parse JSON string into object
-    var actual_JSON = JSON.parse(response);
-	alert(actual_JSON);
- });
-}
- 
- 
- 
-init();
+
+
 
 
 
@@ -79,48 +71,62 @@ var cy = cytoscape({
     }
   ],
   
-  elements: {
-    nodes: [
-		{ data: { id: 'Root'}, position: { x: 0, y: 85 } },
-		{ data: { id: 'Network'}, position: { x: 100, y: 85 } },
-		{ data: { id: 'Switch'}, position: { x: 200, y: 85 } },
-		{ data: { id: 'NXOS'}, position: { x: 300, y: 85 } },	  		
-		{ data: { id: 'Port'}, position: { x: 400, y: 85 } },	  		
-    ],
-    edges: [
-		{ data: { id: 'NX->sw', source: 'NXOS', target: 'Switch' } } ,     
-		{ data: { id: 'sw->NT', source: 'Switch', target: 'Network' } } ,     
-		/*{ data: { id: 'nt->sw', source: 'Network', target: 'Switch' } } ,     */
-		{ data: { id: 'nt->rt', source: 'Network', target: 'Root' } } ,     		
-		{ data: { id: 'NX->sw', source: 'NXOS', target: 'Switch' } } ,     
-		{ data: { id: 'NX->req1', source: 'NXOS', target: 'Port' } } ,     
-    ]
-  },
+ 
   
   layout: {
     name: 'preset',
-    padding: 155
+    padding: 450
   }
 });
 
 
 
-addElements();
+init();
+function addElements(nodes,edges) {	
+	cy.add(nodes);
+	cy.add(edges);	
+}		
 
+function createNodes(json){
+	var nodes=[];
+	for (var i=0;i<json.NodesList.length;i++){
+		nodes.push(
+		{
+		group: "nodes",
+		data: { id: json.NodesList[i].Name}, 
+		position: { x: 25*i, y: 25*i }
+		});
+	}
 
-function addElements() {
-cy.add({
-    group: "nodes",
-    data: { id: 'TTT'}, 
-    position: { x: 250, y: 150 }
-});
+	return nodes;
+}
 
-cy.add({
-    group: "edges",
-    data: { id: 'NX->TT', source: 'NXOS', target: 'TTT'},     
-});
+function createEdges(json){
+
+	var edges=[];
 	
-}	
+	for (var i=0;i<json.NodesList.length;i++){
+		edges.push(
+		{
+		group: "edges",
+		data: { id: 'e'+i, source: json.NodesList[i].Name, target: json.NodesList[i].SourceName}
+		});
+	}
 	
+	return edges;		
+}
+
+
+ function init() { 
+	 json=loadJSON(function(response) {
+	  // Parse JSON string into object
+		var actual_JSON = JSON.parse(response);
+		addElements(createNodes(actual_JSON),createEdges(actual_JSON));		
+	 });
+	 
+}
+ 
+ 
+
 	
 }); // on dom ready
