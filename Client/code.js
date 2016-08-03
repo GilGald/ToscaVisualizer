@@ -1,7 +1,7 @@
 $(function(){ // on dom ready
 
 
-var urlOfJson="https://raw.githubusercontent.com/GilGald/ToscaVisualizerClient/master/jsonTry.json"
+var urlOfJson="https://raw.githubusercontent.com/GilGald/ToscaVisualizer/master/Client/jsonTry.json"
 
  function loadJSON(callback) {   
 
