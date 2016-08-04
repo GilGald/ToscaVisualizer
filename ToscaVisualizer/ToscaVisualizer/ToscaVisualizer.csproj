@@ -80,12 +80,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClasses\Capability.cs" />
+    <Compile Include="BaseClasses\Property.cs" />
     <Compile Include="BaseClasses\Artifact.cs" />
     <Compile Include="BaseClasses\Icon.cs" />
     <Compile Include="BaseClasses\Driver.cs" />
     <Compile Include="BaseClasses\NodeType.cs" />
     <Compile Include="BaseClasses\Requirement.cs" />
     <Compile Include="BaseClasses\ToscaData.cs" />
+    <Compile Include="BaseClasses\ToscaVisualizerAttribute.cs" />
     <Compile Include="Builder.cs" />
     <Compile Include="CloudServiceArchiveWalker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
