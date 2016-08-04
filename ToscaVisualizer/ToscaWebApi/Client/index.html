@@ -7,23 +7,25 @@
     <title>Compound nodes</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
     <script src="code.js"></script>
 </head>
 <body bgcolor="#5A99AD">
 
-    <div style="background-color: red;">
-        <form  enctype="multipart/form-data" method="post" name="fileinfo">
+    <div class="row"  >
+        <form enctype="multipart/form-data" method="post" name="fileinfo">
             <!--action="../api/Tosca/Upload">-->
-            <div style="background-color: pink; width: 300px;">
+            <div class="col-md-6">
                 <label for="uploadfile">Upload Tosca Zip</label>
-                <input type="file" id="uploadfile" name="uploadfile" />
-                <input type="button" value="Upload" id="uploadBtn" />
-            </div>
-
+                <input type="file" class="btn btn-success" id="uploadfile" name="uploadfile" />
+                <input type="button" class="btn btn-success" value="Upload" id="uploadBtn"/>                
+            </div>            
         </form>
     </div>
 
-        <div style="margin-top: 50px;" id="cy"></div>
+    <div style="margin-top: 50px;" id="cy"></div>
 
 </body>
 </html>

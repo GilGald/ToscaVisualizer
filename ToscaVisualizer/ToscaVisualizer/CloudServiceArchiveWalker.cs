@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Toscana;
-using Newtonsoft.Json;
 using QuickGraph;
 using QuickGraph.Algorithms.Search;
-using Toscana.Engine;
 
 namespace ToscaVisualizer
 {
+
     public class CloudServiceArchiveWalker
     {
         private readonly Action<string> action;
@@ -47,25 +42,25 @@ namespace ToscaVisualizer
     }
 
     //This is came from BFS (in toscana), originally it was internal, maybe should be changed in the Nuget
-    //public class ToscaGraphEdge : IEdge<string>
-    //{
-    //    private readonly string source;
-    //    private readonly string target;
+    public class ToscaGraphEdge : IEdge<string>
+    {
+        private readonly string source;
+        private readonly string target;
 
-    //    public ToscaGraphEdge(string source, string target)
-    //    {
-    //        this.source = source;
-    //        this.target = target;
-    //    }
+        public ToscaGraphEdge(string source, string target)
+        {
+            this.source = source;
+            this.target = target;
+        }
 
-    //    public string Source
-    //    {
-    //        get { return source; }
-    //    }
+        public string Source
+        {
+            get { return source; }
+        }
 
-    //    public string Target
-    //    {
-    //        get { return target; }
-    //    }
-    //}
+        public string Target
+        {
+            get { return target; }
+        }
+    }
 }

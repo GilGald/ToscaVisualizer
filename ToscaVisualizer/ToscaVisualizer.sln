@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizer", "ToscaVisualizer\ToscaVisualizer.csproj", "{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizerConsole", "ToscaVisualizerConsole\ToscaVisualizerConsole.csproj", "{B283468D-97F5-444F-8BC4-467549E4D264}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaWebApi", "ToscaWebApi\ToscaWebApi.csproj", "{6E3C0772-C672-4F6B-AFDB-211B76E8448D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C630776A-D45D-47FC-BD56-4D8CE2B097CB}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,20 +37,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://192.168.42.5:8080/tfs/quali-collection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ToscaVisualizer\\ToscaVisualizer.csproj
-		SccProjectName1 = ToscaVisualizer
-		SccLocalPath1 = ToscaVisualizer
-		SccProjectUniqueName2 = ToscaVisualizerConsole\\ToscaVisualizerConsole.csproj
-		SccProjectName2 = ToscaVisualizerConsole
-		SccLocalPath2 = ToscaVisualizerConsole
-		SccProjectUniqueName3 = ToscaWebApi\\ToscaWebApi.csproj
-		SccProjectName3 = ToscaWebApi
-		SccLocalPath3 = ToscaWebApi
 	EndGlobalSection
 EndGlobal
