@@ -13,14 +13,8 @@ namespace ToscaWebApi.Controllers
 {
     public class ToscaController : ApiController
     {
-        // GET: api/Tosca
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         [HttpGet]
-        public HttpResponseMessage LoadToscaData()
+        public HttpResponseMessage LoadToscaDataTest()
         {
             var path = @"C:\Users\oren.c\Desktop\ToscaProj\Examples\tosca.zip";
 
@@ -34,17 +28,7 @@ namespace ToscaWebApi.Controllers
 
         [HttpPost]
         public async Task<HttpResponseMessage> Upload()
-//        public void Upload()
         {
-
-
-//            if (HttpContext.Current.Request.Files.AllKeys.Any())
-//            {
-//                // Get the uploaded image from the Files collection
-//                var httpPostedFile = HttpContext.Current.Request;
-//
-//            }
-
             if (!Request.Content.IsMimeMultipartContent())
             {
                 //webErrorLogger.LogError("Unsupported media type.");
@@ -70,7 +54,7 @@ namespace ToscaWebApi.Controllers
 
             var fileStreamKeyValue = provider.FileStreams.Single();
 
-           // try
+            try
             {
                 var toscaJson = Builder.GetToscaStreamAsJson(fileStreamKeyValue.Value);
 
@@ -79,28 +63,11 @@ namespace ToscaWebApi.Controllers
                     Content = new StringContent(toscaJson, System.Text.Encoding.UTF8, "application/json")
                 };
             }
-            //catch (ToscaBaseException toscaBaseException)
-            //{
-            //    webErrorLogger.LogError(toscaBaseException.Message);
-            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, toscaBaseException.Message);
-            //}
-
-            //return Request.CreateResponse(HttpStatusCode.OK, "Successfully published: " + fileStreamKeyValue.Key);
-        }
-
-        // POST: api/Tosca
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Tosca/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Tosca/5
-        public void Delete(int id)
-        {
+            catch (Exception toscaBaseException)
+            {
+                //    webErrorLogger.LogError(toscaBaseException.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, toscaBaseException.Message);
+            }
         }
     }
 }
