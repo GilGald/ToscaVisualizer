@@ -30,15 +30,55 @@ namespace ToscaVisualizer
 
             for (var curNodeType = toscanaNodeType; curNodeType != null; curNodeType = curNodeType.Base)
             {
-                if (nodeTypeToReturn.Requirements != null)
+                if (curNodeType.Requirements.Any())
                     nodeTypeToReturn.Requirements.AddRange(curNodeType.Requirements.SelectMany(r => r)
                         .Select(rq => new Requirement
                         {
+                            Name = rq.Key,
                             Capability = rq.Value.Capability,
-                            NodeName = rq.Value.Node.Substring(rq.Value.Node.LastIndexOf('.') + 1),
                             NodeFullName = rq.Value.Node,
                             Relationaship = rq.Value.Relationship,
                             Occurences = rq.Value.Occurrences
+                        }));
+
+                if (curNodeType.Properties.Any())
+                    nodeTypeToReturn.Properties.AddRange(curNodeType.Properties.Select(r => r)
+                        .Select(pr => new Property
+                        {
+                            Name = pr.Key,
+                            Description = pr.Value.Description,
+                            Constraints = pr.Value.Constraints,
+                            Default = pr.Value.Default,
+                            EntrySchema = pr.Value.EntrySchema,
+                            Status = pr.Value.Status.ToString(),
+                            Tags = pr.Value.Tags,
+                            Required = pr.Value.Required,
+                            Type = pr.Value.Type,
+                        }));
+
+                if (curNodeType.Capabilities.Any())
+                {
+                    nodeTypeToReturn.Capabilities.AddRange(curNodeType.Capabilities.Select(r => r)
+                        .Select(cb => new Capability
+                        {
+                            Name = cb.Key,
+                            Description = cb.Value.Description,
+                            Type = cb.Value.Type,
+                            Properties = Property.ConvertToLocalProperty(cb.Value.Properties),
+                            Attributes = Capability.ConvertToLocalAttribute(cb.Value.Attributes)
+                        }));
+                }
+
+                if (curNodeType.Attributes.Any())
+                    nodeTypeToReturn.Attributes.AddRange(curNodeType.Attributes.Select(r => r)
+                        .Select(attr => new ToscaVisualizerAttribute
+                        {
+                            Name = attr.Key,
+                            Type = attr.Value.Type,
+                            Description = attr.Value.Description,
+                            EntrySchema = attr.Value.EntrySchema,
+                            Default = attr.Value.Default,
+                            Status = attr.Value.Status.ToString(),
                         }));
             }
             //MergeRequirements(toscanaNodeType.Requirements.Select(s => s.Values), nodeTypeToReturn);
@@ -51,7 +91,7 @@ namespace ToscaVisualizer
         private static string ObjectToJson(object toConvert)
         {
             return JsonConvert.SerializeObject(toConvert);
-            
+
         }
 
         public static string GetToscaZipAsJson(string path)
