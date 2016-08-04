@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizer", "ToscaVisualizer\ToscaVisualizer.csproj", "{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizerConsole", "ToscaVisualizerConsole\ToscaVisualizerConsole.csproj", "{B283468D-97F5-444F-8BC4-467549E4D264}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizer.Tests", "ToscaVisualizerConsole\ToscaVisualizer.Tests.csproj", "{B283468D-97F5-444F-8BC4-467549E4D264}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaWebApi", "ToscaWebApi\ToscaWebApi.csproj", "{6E3C0772-C672-4F6B-AFDB-211B76E8448D}"
 EndProject
