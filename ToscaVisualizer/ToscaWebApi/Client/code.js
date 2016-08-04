@@ -113,7 +113,14 @@ $(function () { // on dom ready
                         height: 40
                     }
                 }
-            });            
+            });
+
+            cy.on('tap',
+                '#' + id,
+                { fullname: nodes[i].data.fullname},
+                function(evt) {
+//                    alert(evt.data.fullname);
+                });
         }
 
         cy.add(edges);
