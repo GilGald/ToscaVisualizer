@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizer", "ToscaVisualizer\ToscaVisualizer.csproj", "{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaVisualizerConsole", "ToscaVisualizerConsole\ToscaVisualizerConsole.csproj", "{B283468D-97F5-444F-8BC4-467549E4D264}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaWebApi", "ToscaWebApi\ToscaWebApi.csproj", "{6E3C0772-C672-4F6B-AFDB-211B76E8448D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD163CB-AC42-4485-A6A5-F8BAF0DCAA87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B283468D-97F5-444F-8BC4-467549E4D264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B283468D-97F5-444F-8BC4-467549E4D264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B283468D-97F5-444F-8BC4-467549E4D264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B283468D-97F5-444F-8BC4-467549E4D264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3C0772-C672-4F6B-AFDB-211B76E8448D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3C0772-C672-4F6B-AFDB-211B76E8448D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3C0772-C672-4F6B-AFDB-211B76E8448D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3C0772-C672-4F6B-AFDB-211B76E8448D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.42.5:8080/tfs/quali-collection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ToscaVisualizer\\ToscaVisualizer.csproj
+		SccProjectName1 = ToscaVisualizer
+		SccLocalPath1 = ToscaVisualizer
+		SccProjectUniqueName2 = ToscaVisualizerConsole\\ToscaVisualizerConsole.csproj
+		SccProjectName2 = ToscaVisualizerConsole
+		SccLocalPath2 = ToscaVisualizerConsole
+		SccProjectUniqueName3 = ToscaWebApi\\ToscaWebApi.csproj
+		SccProjectName3 = ToscaWebApi
+		SccLocalPath3 = ToscaWebApi
+	EndGlobalSection
+EndGlobal
