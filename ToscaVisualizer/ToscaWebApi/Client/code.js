@@ -117,8 +117,17 @@ $(function () { // on dom ready
 
             cy.on('tap',
                 '#' + id,
-                { fullname: nodes[i].data.fullname},
-                function(evt) {
+                { fullname: nodes[i].data.fullname, allData: nodes[i].data.allData },
+                function (evt) {
+                    var p = evt.data.allData.Properties;
+                    var text = "";
+                    for (var i = 0; i < p.length; i++) {
+                        text += p[i].Description == null ? "" : p[i].Description + "\n";
+                    }
+
+                    $('#nodeData').text(text);
+
+//                    $('#nodeData').value('ffff');
 //                    alert(evt.data.fullname);
                 });
         }
@@ -170,7 +179,7 @@ $(function () { // on dom ready
             nodes.push(
             {
                 group: "nodes",
-                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45', fullname: json.NodesList[i].FullName },                
+                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45', fullname: json.NodesList[i].FullName ,allData: json.NodesList[i]},                
             });           
         }        
         return nodes;
