@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using ToscaVisualizer;
 
@@ -33,7 +34,17 @@ namespace ToscaWebApi.Controllers
 
         [HttpPost]
         public async Task<HttpResponseMessage> Upload()
+//        public void Upload()
         {
+
+
+//            if (HttpContext.Current.Request.Files.AllKeys.Any())
+//            {
+//                // Get the uploaded image from the Files collection
+//                var httpPostedFile = HttpContext.Current.Request;
+//
+//            }
+
             if (!Request.Content.IsMimeMultipartContent())
             {
                 //webErrorLogger.LogError("Unsupported media type.");

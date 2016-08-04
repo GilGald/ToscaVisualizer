@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet" />
+    <meta charset=utf-8 />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <title>Compound nodes</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
+    <script src="code.js"></script>
+</head>
+<body bgcolor="#5A99AD">
+
+    <div style="background-color: red;">
+        <form  enctype="multipart/form-data" method="post" name="fileinfo">
+            <!--action="../api/Tosca/Upload">-->
+            <div style="background-color: pink; width: 300px;">
+                <label for="uploadfile">Upload Tosca Zip</label>
+                <input type="file" id="uploadfile" name="uploadfile" />
+                <input type="button" value="Upload" id="uploadBtn" />
+            </div>
+
+        </form>
+    </div>
+
+        <div style="margin-top: 50px;" id="cy"></div>
+
+</body>
+</html>
