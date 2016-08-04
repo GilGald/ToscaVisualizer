@@ -15,8 +15,10 @@ namespace ToscaVisualizer
         public static NodeType BuildNodeTypeData(ToscaNodeType toscanaNodeType, string nodeTypeName)
         {
             var nodeTypeToReturn = new NodeType();
-            nodeTypeToReturn.Name = nodeTypeName;
-            nodeTypeToReturn.SourceName = toscanaNodeType.DerivedFrom;
+            nodeTypeToReturn.Name = nodeTypeName.Substring(nodeTypeName.LastIndexOf('.') + 1);
+            nodeTypeToReturn.FullName = nodeTypeName;
+            nodeTypeToReturn.SourceName = toscanaNodeType.DerivedFrom.Substring(toscanaNodeType.DerivedFrom.LastIndexOf('.') + 1); ;
+            nodeTypeToReturn.SourceFullName = toscanaNodeType.DerivedFrom;
             if (toscanaNodeType.Artifacts.ContainsKey("driver"))
             {
                 nodeTypeToReturn.Artifact.Driver.Name = toscanaNodeType.Artifacts["driver"].File;
@@ -33,7 +35,8 @@ namespace ToscaVisualizer
                         .Select(rq => new Requirement
                         {
                             Capability = rq.Value.Capability,
-                            NodeName = rq.Value.Node,
+                            NodeName = rq.Value.Node.Substring(rq.Value.Node.LastIndexOf('.') + 1),
+                            NodeFullName = rq.Value.Node,
                             Relationaship = rq.Value.Relationship,
                             Occurences = rq.Value.Occurrences
                         }));
