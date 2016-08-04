@@ -2,20 +2,17 @@ $(function(){ // on dom ready
 
 
     $("#uploadBtn")
-        .click(function() {
-            
+        .click(function() {            
             var formdata = new FormData();            
             var file = $("#uploadfile")[0].files[0];
-
             formdata.append("Uploaded", file);            
 
             $.ajax({
                 url: '../api/Tosca/Upload',
                 type: 'POST',
                 data: formdata,
-                success: function (data) {                    
-                    var actual_JSON = data;
-                    addElements(createNodes(actual_JSON), createEdges(actual_JSON));
+                success: function (data) {                                        
+                    addElements(createNodes(data), createEdges(data));
                 },
                 cache: false,
                 contentType: false,
@@ -74,16 +71,12 @@ var cy = cytoscape({
       }
     }
   ],
-  
- 
-  
+     
   layout: {
     name: 'preset',
     padding: 450
   }
 });
-
-
 
 
 function addElements(nodes,edges) {	
