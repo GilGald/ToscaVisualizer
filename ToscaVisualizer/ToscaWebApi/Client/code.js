@@ -56,27 +56,24 @@ $(function () { // on dom ready
         autounselectify: false,
         zoom: 3,
         style: [
+            {
+                selector: ':selected',
+                css: {
+                    'border-width': 3,
+                    'border-color': '#A1A1A1'
+                }
+            },          
           {
               selector: 'node',
               css: {
-                  'content': 'data(id)',
+                  'shape': 'data(faveShape)',                  
                   'text-valign': 'center',
-                  'text-halign': 'center',
-                  'background-color': 'black',
-                  'color': 'white',
-                  'font-size': '6px'
-              }
-          },
-          {
-              selector: '$node > node',
-              css: {
-                  'padding-top': '5px',
-                  'padding-left': '5px',
-                  'padding-bottom': '5px',
-                  'padding-right': '5px',
-                  'text-valign': 'top',
-                  'text-halign': 'center',
-                  'background-color': 'blue'
+                  'text-outline-width': 1,
+                  'text-outline-color': 'data(faveColor)',
+                  'background-color': 'data(faveColor)',
+                  'color': '#fff',
+                  'font-size': '10px',
+                  'content': 'data(id)',
               }
           },
           {
@@ -84,30 +81,53 @@ $(function () { // on dom ready
               css: {
                   'target-arrow-shape': 'triangle',
                   'curve-style': 'bezier',
-                  'line-color': 'black'
+                  'target-arrow-color': 'data(faveColor)',
+                  'line-color': 'data(faveColor)',
+                  'width': 'mapData(strength, 1, 0, 2, 6)',
               }
           },
-          {
-              selector: ':selected',
-              css: {
-                  'background-color': 'red',
-                  'line-color': 'red',
-                  'target-arrow-color': 'red',
-                  'source-arrow-color': 'red'
-              }
-          }
-        ],
 
-        layout: {
-            name: 'preset',
-            padding: 450
-        }
+        ]
     });
+        
+
+
+
 
 
     function addElements(nodes, edges) {
         cy.add(nodes);
         cy.add(edges);
+
+        var options = {
+            name: 'concentric',
+
+            fit: true, // whether to fit the viewport to the graph
+            padding: 4, // the padding on fit
+            startAngle: 3 / 2 * Math.PI, // where nodes start in radians
+            sweep: undefined, // how many radians should be between the first and last node (defaults to full circle)
+            clockwise: true, // whether the layout should go clockwise (true) or counterclockwise/anticlockwise (false)
+            equidistant: false, // whether levels have an equal radial distance betwen them, may cause bounding box overflow
+            minNodeSpacing: 1, // min spacing between outside of nodes (used for radius adjustment)
+            boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
+            avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
+            height: undefined, // height of layout area (overrides container height)
+            width: undefined, // width of layout area (overrides container width)
+            concentric: function (node) { // returns numeric value for each node, placing higher nodes in levels towards the centre
+                return node.degree();
+            },
+            levelWidth: function (nodes) { // the variation of concentric values in each level
+                return nodes.maxDegree() / 4;
+            },
+            animate: true, // whether to transition the node positions
+            animationDuration: 800, // duration of animation in ms if enabled
+            animationEasing: undefined, // easing of animation if enabled
+            ready: undefined, // callback on layoutready
+            stop: undefined // callback on layoutstop
+        };
+
+        cy.layout(options);
+
     }
 
     function createNodes(json) {
@@ -116,8 +136,8 @@ $(function () { // on dom ready
             nodes.push(
             {
                 group: "nodes",
-                data: { id: json.NodesList[i].Name },
-                position: { x: 25 * (i + 1), y: 25 * (i + 1) }
+                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45' },
+                
             });
         }
 
@@ -129,11 +149,14 @@ $(function () { // on dom ready
         var edges = [];
 
         for (var i = 0; i < json.NodesList.length; i++) {
-            edges.push(
-            {
-                group: "edges",
-                data: { id: 'e' + i, source: json.NodesList[i].Name, target: json.NodesList[i].SourceName }
-            });
+            if (json.NodesList[i].SourceName!='Root') {
+                edges.push(
+                {
+                    group: "edges",
+                    data: { id: 'e' + i, source: json.NodesList[i].Name, target: json.NodesList[i].SourceName, faveColor: '#6FB1FC'}
+                });
+            }
+            
         }
 
         return edges;
