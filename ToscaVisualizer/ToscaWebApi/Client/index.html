@@ -4,28 +4,46 @@
     <link href="style.css" rel="stylesheet" />
     <meta charset=utf-8 />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
-    <title>Compound nodes</title>
+    <title>Tosca Visualizer</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="code.js"></script>
 </head>
 <body bgcolor="#5A99AD">
 
-    <div class="row"  >
-        <form enctype="multipart/form-data" method="post" name="fileinfo">
-            <!--action="../api/Tosca/Upload">-->
-            <div class="col-md-6">
-                <label for="uploadfile">Upload Tosca Zip</label>
-                <input type="file" class="btn btn-success" id="uploadfile" name="uploadfile" />
-                <input type="button" class="btn btn-success" value="Upload" id="uploadBtn"/>                
-            </div>            
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="http://www.quali.com/wp-content/themes/quali/images/logo.png">
+            </a>
+        </div>
+
+        <form class="navbar-form navbar-left" enctype="multipart/form-data" method="post" name="fileinfo">            
+            <p class=" navbar-text">Upload Tosca Zip</p>
+            <div class="form-group">                
+                <div>                    
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                Browse&hellip; <input type="file" id="uploadfile" name="uploadfile" style="display: none;" multiple />
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                    </div>                    
+                </div>
+            </div>
+            <input type="button" class="btn btn-primary navbar-btn" value="Create Graph" id="uploadBtn"/>
+
         </form>
     </div>
 
-    <div style="margin-top: 50px;" id="cy"></div>
+
+</nav>
+<div id="cy" style="border: solid 1px red;"></div>
 
 </body>
 </html>
