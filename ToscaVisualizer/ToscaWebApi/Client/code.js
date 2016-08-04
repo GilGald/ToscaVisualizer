@@ -97,6 +97,25 @@ $(function () { // on dom ready
 
     function addElements(nodes, edges) {
         cy.add(nodes);
+
+        for (i = 0; i < nodes.length; i++) {
+            var id= nodes[i].data.id;            
+            cy.$('#'+id).qtip({
+                content: nodes[i].data.fullname,
+                position: {
+                    my: 'top center',
+                    at: 'top center'
+                },
+                style: {
+                    classes: 'qtip-bootstrap',
+                    tip: {
+                        width: 8,
+                        height: 40
+                    }
+                }
+            });            
+        }
+
         cy.add(edges);
 
         var options = {
@@ -128,6 +147,14 @@ $(function () { // on dom ready
 
         cy.layout(options);
 
+
+
+
+
+
+
+
+
     }
 
     function createNodes(json) {
@@ -136,11 +163,9 @@ $(function () { // on dom ready
             nodes.push(
             {
                 group: "nodes",
-                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45' },
-                
-            });
-        }
-
+                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45', fullname: json.NodesList[i].FullName },                
+            });           
+        }        
         return nodes;
     }
 
