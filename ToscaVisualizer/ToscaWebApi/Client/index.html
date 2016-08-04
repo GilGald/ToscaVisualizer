@@ -18,7 +18,7 @@
 </head>
 <body bgcolor="#5A99AD">
 
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<nav class="navbar navbar-default navbar-inverse">
 
     <div class="container-fluid">
         <div class="navbar-header">
@@ -27,10 +27,10 @@
             </a>
         </div>
 
-        <form class="navbar-form navbar-left" enctype="multipart/form-data" method="post" name="fileinfo">            
+        <form class="navbar-form navbar-left" enctype="multipart/form-data" method="post" name="fileinfo">
             <p class=" navbar-text">Upload Tosca Zip</p>
-            <div class="form-group">                
-                <div>                    
+            <div class="form-group">
+                <div>
                     <div class="input-group">
                         <label class="input-group-btn">
                             <span class="btn btn-primary">
@@ -38,17 +38,24 @@
                             </span>
                         </label>
                         <input type="text" class="form-control" readonly>
-                    </div>                    
+                    </div>
                 </div>
             </div>
-            <input type="button" class="btn btn-primary navbar-btn" value="Create Graph" id="uploadBtn"/>
+            <!-- <input type="button" class="btn btn-primary navbar-btn" value="Create Graph" id="uploadBtn"/>-->
+
+            <button type="button" class="btn btn-primary navbar-btn" id="uploadBtn">
+                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> 
+                Create Graph
+            </button>
+
 
         </form>
     </div>
-
-
 </nav>
+
 <div id="cy" style="border: solid 1px red;"></div>
+
+<div style="position: absolute; right: 0; top: 100px; width: 18%; height: 500px;" >A block of help text that breaks onto a new line and may extend beyond one line.</div>
 
 </body>
 </html>
