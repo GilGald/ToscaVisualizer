@@ -119,7 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\code.js" />
-    <Content Include="Client\index.html" />
+    <Content Include="index.html" />
     <Content Include="Client\style.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
