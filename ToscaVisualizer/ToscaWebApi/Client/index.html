@@ -18,6 +18,23 @@
 </head>
 <body bgcolor="#5A99AD">
 
+
+<style>
+.glyphicon-refresh-animate {
+	-animation: spin .8s infinite linear;
+	-webkit-animation: spin2 .8s infinite linear;
+}
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+</style>
+
+
 <nav class="navbar navbar-default navbar-inverse">
 
     <div class="container-fluid">
@@ -46,6 +63,7 @@
             <button type="button" class="btn btn-primary navbar-btn" id="uploadBtn">
                 <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> 
                 Create Graph
+                <span id="loading_img" class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display : none;" ></span>
             </button>
 
 

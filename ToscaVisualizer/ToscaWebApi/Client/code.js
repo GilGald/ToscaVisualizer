@@ -2,11 +2,11 @@ $(function () { // on dom ready
 
 
     $("#uploadBtn")
-        .click(function () {
+        .click(function () {            
+            $("#loading_img").show();
             var formdata = new FormData();
             var file = $("#uploadfile")[0].files[0];
             formdata.append("Uploaded", file);
-
             $.ajax({
                 url: '../api/Tosca/Upload',
                 type: 'POST',
@@ -17,7 +17,10 @@ $(function () { // on dom ready
                 cache: false,
                 contentType: false,
                 processData: false
-            });
+            })
+            .done(function (result) {
+                $("#loading_img").hide();
+            });;
         });
 
 
