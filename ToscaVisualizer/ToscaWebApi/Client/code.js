@@ -2,7 +2,7 @@ $(function () { // on dom ready
 
 
     $("#uploadBtn")
-        .click(function () {            
+        .click(function () {
             $("#loading_img").show();
             var formdata = new FormData();
             var file = $("#uploadfile")[0].files[0];
@@ -65,11 +65,11 @@ $(function () { // on dom ready
                     'border-width': 3,
                     'border-color': '#A1A1A1'
                 }
-            },          
+            },
           {
               selector: 'node',
               css: {
-                  'shape': 'data(faveShape)',                  
+                  'shape': 'data(faveShape)',
                   'text-valign': 'center',
                   'text-outline-width': 1,
                   'text-outline-color': 'data(faveColor)',
@@ -92,7 +92,7 @@ $(function () { // on dom ready
 
         ]
     });
-        
+
 
 
 
@@ -102,8 +102,8 @@ $(function () { // on dom ready
         cy.add(nodes);
 
         for (i = 0; i < nodes.length; i++) {
-            var id= nodes[i].data.id;            
-            cy.$('#'+id).qtip({
+            var id = nodes[i].data.id;
+            cy.$('#' + id).qtip({
                 content: nodes[i].data.fullname,
                 position: {
                     my: 'top center',
@@ -122,16 +122,14 @@ $(function () { // on dom ready
                 '#' + id,
                 { fullname: nodes[i].data.fullname, allData: nodes[i].data.allData },
                 function (evt) {
-                    var p = evt.data.allData.Properties;
-                    var text = "";
-                    for (var i = 0; i < p.length; i++) {
-                        text += p[i].Description == null ? "" : p[i].Description + "\n";
-                    }
 
-                    $('#nodeData').text(text);
+                    CreateProperties(evt.data.allData.Properties);
+                    CreateRequirements(evt.data.allData.Requirements);
+                    CreateCapabilities(evt.data.allData.Capabilities);
+                    CreateAttributes(evt.data.allData.Attributes);
+                    CreateArtifacts(evt.data.allData.Artifact);
 
-//                    $('#nodeData').value('ffff');
-//                    alert(evt.data.fullname);
+
                 });
         }
 
@@ -166,14 +164,81 @@ $(function () { // on dom ready
 
         cy.layout(options);
 
+    }
+
+    function CreateProperties(properties) {
+        p = properties;
+        $('#idProperties').text('');
+        $('#idProperties').append('<b>Properties</b>');
+        $('#idProperties').css("text-decoration", "underline");
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].Name != null) {
+                $('#idProperties').append('<br>Name: ' + p[i].Name);
+            }
+        }
+
+        $('#idProperties').append('<br></br>');
+    }
+
+    function CreateRequirements(requirements) {
+        p = requirements;
+        if (p.length === undefined) return;
+        $('#idRequirements').text('');
+        $('#idRequirements').append('<b>Requirements</b>');
+        $('#idRequirements').css("text-decoration", "underline");
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].Name != null) {
+                $('#idRequirements').append('<br>Name: ' + p[i].Name);
+            }
+        }
+        $('#idRequirements').append('<br></br>');
+    }
 
 
+    function CreateCapabilities(capabilities) {
+        p = capabilities;
+        if (p.length === undefined) return;
+        $('#idCapabilities').text('');
+        $('#idCapabilities').append('<b>Cpabilities</b>');
+        $('#idCapabilities').css("text-decoration", "underline");
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].Name != null) {
+                $('#idCapabilities').append('<br>Name: ' + p[i].Name);
+            }
+        }
+        $('#idCapabilities').append('<br></br>');
+    }
 
 
+    function CreateAttributes(attri) {
+        p = attri;
+        if (p.length === undefined) return;
+        var id = $('#idAttributes');
+        id.css("text-decoration", "underline");
+        id.text('');
+        id.append('<b>Attributes</b>');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].Name != null) {
+                id.append('<br>Name: ' + p[i].Name);
+            }
+        }
+        $('#idAttributes').append('<br></br>');
+    }
 
 
-
-
+    function CreateArtifacts(data) {
+        p = data.Driver;
+        var id = $('#idArtifact');
+        id.text('');
+        if (p.Name == null) return;
+        id.append('<b>Artifacts</b>');
+        id.css("text-decoration", "underline");
+        //for (var i = 0; i < p.length; i++) {
+        if (p != null && p.Name != null) {
+            id.append('<br>Driver: ' + p.Name);
+        }
+        //}
+        $('#idArtifact').append('<br></br>');
     }
 
     function createNodes(json) {
@@ -182,9 +247,9 @@ $(function () { // on dom ready
             nodes.push(
             {
                 group: "nodes",
-                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45', fullname: json.NodesList[i].FullName ,allData: json.NodesList[i]},                
-            });           
-        }        
+                data: { id: json.NodesList[i].Name, faveShape: 'heptagon', faveColor: '#0D1F45', fullname: json.NodesList[i].FullName, allData: json.NodesList[i] },
+            });
+        }
         return nodes;
     }
 
@@ -193,14 +258,14 @@ $(function () { // on dom ready
         var edges = [];
 
         for (var i = 0; i < json.NodesList.length; i++) {
-            if (json.NodesList[i].SourceName!='Root') {
+            if (json.NodesList[i].SourceName != 'Root') {
                 edges.push(
                 {
                     group: "edges",
-                    data: { id: 'e' + i, source: json.NodesList[i].Name, target: json.NodesList[i].SourceName, faveColor: '#6FB1FC'}
+                    data: { id: 'e' + i, source: json.NodesList[i].Name, target: json.NodesList[i].SourceName, faveColor: '#6FB1FC' }
                 });
             }
-            
+
         }
 
         return edges;
